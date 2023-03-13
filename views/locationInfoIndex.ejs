@@ -32,6 +32,13 @@
             <td><%= l.nextLocation %></td>
             <td><%= l.dateToMove %></td>
             <td><%= l.comments %></td>
+            <% const locationsLink = `/locationInfo/${l._id}`%>
+            <td><a href="<%=locationsLink%>">Edit</a></td>
+            <td>
+            <form action="/locationInfo/<%=l._id%>?_method=DELETE" method="post">
+              <button>Delete</button>
+            </form>
+            </td>
         </tr>
     <% }) %>
 

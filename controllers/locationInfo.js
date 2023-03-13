@@ -28,8 +28,47 @@ async function create(req, res) {
   }
 }
 
+async function editPost(req, res) {
+  const { id } = req.params;
+  try {
+    LocationInfo.findById(id).then((locations) => {
+      const context = { id, locations };
+      res.render("locationInfoCrud/edit", context);
+    });
+  } catch (error) {
+    res.send("this edit not working m8");
+  }
+}
+
+async function update(req, res) {
+  const { id } = req.params;
+  try {
+    LocationInfo.findByIdAndUpdate(id, req.body, { new: true })
+      .exec()
+      .then((locations) => {
+        res.redirect("/locationInfo");
+      });
+  } catch (error) {}
+}
+
+async function del(req, res) {
+  const { id } = req.params;
+  try {
+    LocationInfo.findByIdAndDelete(id)
+      .exec()
+      .then((locations) => {
+        res.redirect("/locationInfo");
+      });
+  } catch (error) {
+    res.redirect("/locationInfo");
+  }
+}
+
 module.exports = {
   indexPage,
   createPage,
   create,
+  editPost,
+  update,
+  del,
 };

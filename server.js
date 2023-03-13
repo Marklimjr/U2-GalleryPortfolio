@@ -11,7 +11,6 @@ require("./config/database");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var ArtistARouter = require("./routes/artistA");
-var editArtworksRouter = require("./routes/editArtworks");
 var locationInfoRouter = require("./routes/locationInfo");
 
 var app = express();
@@ -30,7 +29,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/artistA", ArtistARouter);
-app.use("/editArtworks", editArtworksRouter);
 app.use("/locationInfo", locationInfoRouter);
 
 // catch 404 and forward to error handler

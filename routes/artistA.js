@@ -6,5 +6,7 @@ const artistACtrl = require("../controllers/artistA");
 router.get("/", artistACtrl.artistPage);
 router.get("/createNew", artistACtrl.createPage);
 router.post("/createNew", artistACtrl.create);
+router.get("/:id", artistACtrl.editPost);
+router.put("/:id", artistACtrl.update);
 
 module.exports = router;
