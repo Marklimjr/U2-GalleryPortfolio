@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Artwork Location Index</title>
+</head>
+<body>
+    <h1>Artwork Location Index</h1>
+    <a href="/locationInfo/createNew">NEW ENTRY</a>   
+</body>
+<div>
+    <h2>Artwork List</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>currentLocation</th>
+      <th>nextLocation</th>
+      <th>dateToMove</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+</div>
+<div>
+    <% locations.forEach(l => { %>      
+        <tr>
+            <td><%= l.title %></td>
+            <td><%= l.currentLocation %></td>
+            <td><%= l.nextLocation %></td>
+            <td><%= l.dateToMove %></td>
+            <td><%= l.comments %></td>
+        </tr>
+    <% }) %>
+
+</div>
+<br>
+<br>
+
+</html>

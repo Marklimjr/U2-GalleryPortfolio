@@ -1,0 +1,15 @@
+
+body {
+  padding: 50px;
+  font: 14px Futura , Arial, sans-serif;
+}
+
+a { text-decoration: none }
+a:link {color: black;}      /* unvisited link */
+/* a:visited {color: purple;}   visited link */
+a:hover {color: red;}     /* mouse over link */
+a:active {color: red;}    /* selected link */
+
+h3 {
+  display:inline-block;
+}
