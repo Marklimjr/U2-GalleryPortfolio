@@ -1,4 +1,5 @@
 const ArtistA = require("../models/artistA");
+const Location = require("../models/locationInfo");
 
 // function artistPage(req, res) {
 //   res.render("artistA");
@@ -6,9 +7,11 @@ const ArtistA = require("../models/artistA");
 
 async function artistPage(req, res) {
   try {
-    ArtistA.find().then((artworks) => {
-      res.render("artistA", { artworks });
-    });
+    ArtistA.find()
+      .populate("location")
+      .then((artworks) => {
+        res.render("artistA", { artworks });
+      });
   } catch (error) {
     res.send("this not it mate");
   }
