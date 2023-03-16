@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>All Exhibitions</title>
+    
+</head>
+<%- include('../partials/header') %>
+
+
+<body>
+    <% exhibitions.forEach(function(e){ %>
+    <h3><%= e.title%></h3>
+    <h4><%= e.synopsis %></h4>
+    <% e.artworks.forEach(function(a){ %>
+        <h2><%= a.artworkUrl%></h2>
+        <h2><%= a.artistName%></h2>
+        <h2><%= a.artworkDate%></h2>
+
+        <% }); %>
+
+    <% const exhibitionsLink = `/exhibitions/${e._id}`%>
+    <a href="<%=exhibitionsLink%>">EDIT</a>
+
+<form action="/exhibitions/<%=e._id%>?_method=DELETE" method="post">
+    <button>DELETE</button>
+</form>
+
+<form action="/exhibitions/artworks/<%=e._id%>?_method=PUT" method ="post">
+    <select name="artworkId">
+        <%- artworks.map(artwork => `<option value="${artwork._id}">${artwork.artistName}</option>`).join('') %>
+      </select>
+      <button type="submit">Add to Exhibition</button>
+        
+</form>
+
+
+
+    <% }); %>    
+    
+</body>
+</html>

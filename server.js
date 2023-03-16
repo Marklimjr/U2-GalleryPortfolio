@@ -6,13 +6,13 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 
 require("dotenv").config();
+
 require("./config/database");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var ArtistARouter = require("./routes/artistA");
-var locationInfoRouter = require("./routes/locationInfo");
-
+var artworksRouter = require("./routes/artworks");
+var exhibitionsRouter = require("./routes/exhibitions");
 var app = express();
 
 // view engine setup
@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/artistA", ArtistARouter);
-app.use("/locationInfo", locationInfoRouter);
+app.use("/artworks", artworksRouter);
+app.use("/exhibitions", exhibitionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

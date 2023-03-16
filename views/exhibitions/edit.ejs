@@ -1,0 +1,16 @@
+<h2>Edit Exhibition Here</h2>
+
+<form id="new-exhibition" action="/exhibitions/<%=id%>?_method=PUT" method="POST">
+    <label>Title:</label>
+    <br>
+    <input type="text" name="title" value="<%= exhibitions.title%>">
+    <br>
+    <br>
+    <label>Synopsis:</label>
+    <br>
+    <textarea name="synopsis" rows="4" cols="50" placeholder="<%= exhibitions.synopsis %>"></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Edit Exhibition">
+  </form>
+
