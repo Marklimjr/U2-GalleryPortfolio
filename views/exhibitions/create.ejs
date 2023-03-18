@@ -5,7 +5,9 @@
     type="text" 
     name="title"
     type="text"
-
+    required
+    oninvalid="setCustomValidity('Please insert Title')"
+    oninput="this.setCustomValidity('')"
     >
     <br>
     <br>
@@ -14,9 +16,11 @@
     <textarea 
     name="synopsis" 
     type="text"
-
     rows="4" 
     cols="50"
+    minlength="140"
+    oninvalid="setCustomValidity('Please insert Synopsis,Min characters is 140')"
+    oninput="this.setCustomValidity('')"
 
     ></textarea>
     <br>

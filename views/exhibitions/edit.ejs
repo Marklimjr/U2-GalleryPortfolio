@@ -3,12 +3,27 @@
 <form id="new-exhibition" action="/exhibitions/<%=id%>?_method=PUT" method="POST">
     <label>Title:</label>
     <br>
-    <input type="text" name="title" value="<%= exhibitions.title%>">
+    <input 
+    type="text" 
+    name="title" 
+    value="<%= exhibitions.title%>"
+    required
+    oninvalid="setCustomValidity('Please insert Title')"
+    oninput="this.setCustomValidity('')"
+    >
     <br>
     <br>
     <label>Synopsis:</label>
     <br>
-    <textarea name="synopsis"><%= exhibitions.synopsis %>"</textarea> 
+    <textarea
+    name="synopsis"
+    required 
+    minlength="140"
+    oninvalid="setCustomValidity('Please insert Synopsis, Minimum 140 characters')"
+    oninput="this.setCustomValidity('')"
+    >
+    <%= exhibitions.synopsis %>
+    </textarea> 
     <br>
     <br>
     <input type="submit" value="Edit Exhibition">
