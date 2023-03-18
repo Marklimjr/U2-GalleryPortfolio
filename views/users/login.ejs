@@ -1,0 +1,16 @@
+
+<h2><%= message %></h2>
+
+<label class="label-password">
+    <input type="text" class="text" name="password" placeholder="Password" tabindex="2" required minlength="3" pattern=".{3,}" title="Password must be at least 3 characters long" />
+    <span class="required">Password</span>
+  </label>
+
+
+<form action="/users/login" method="post">
+    <label>User ID:</label>
+    <input type="text" name="userid"  />
+    <label>Password:</label>
+    <input type="text"  name="password"  />
+    <button type="submit">Login</button>
+  </form>
