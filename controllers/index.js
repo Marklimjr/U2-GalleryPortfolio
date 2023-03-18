@@ -9,12 +9,6 @@ function home(req, res) {
   } catch (error) {}
 }
 
-function showExhibition(req, res) {
-  try {
-  } catch (error) {}
-}
-
 module.exports = {
   home,
-  showExhibition,
 };
