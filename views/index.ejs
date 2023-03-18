@@ -9,11 +9,11 @@
   <%- include('partials/header') %>
   <body>
     <h1>All Exhibitions</h1>
-  
-
-    <a><h3>Exhibition A</h3></a>
-    <a><h3>Exhibition B</h3></a>
-    <a><h3>Exhibition C</h3></a>
-    <a><h3>Exhibition D</h3></a>
+    
+    <% exhibitions.forEach(function(e){ %>
+      <% const exhibitionsLink = `/${e._id}`%>
+      <a href="<%=exhibitionsLink%>"><%= e.title%></a>
+      <h6><%= e.synopsis%></h6>
+    <% }); %> 
   </body>
 </html>
