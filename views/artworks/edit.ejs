@@ -1,39 +1,39 @@
-<form id="new-exhibition" action="/artworks/createNew" method="POST">
-    <label>Artwork URL:</label>
+<h2>Edit Artwork Here</h2>
+
+<form id="new-artwork" action="/artworks/<%=id%>?_method=PUT" method="POST">
+    <label>Title:</label>
     <br>
     <input 
     type="text" 
-    name="artworkUrl"
+    name="artworkUrl" 
+    value="<%= artworks.artworkUrl%>"
     required
     oninvalid="setCustomValidity('Please insert Artwork URL')"
     oninput="this.setCustomValidity('')"
     >
     <br>
     <br>
-    <label>artist Name:</label>
-    <br>
     <input 
     type="text" 
-    name="artistName"
+    name="artistName" 
+    value="<%= artworks.artistName%>"
     required
     oninvalid="setCustomValidity('Please insert Artist Name')"
     oninput="this.setCustomValidity('')"
     >
     <br>
     <br>
-    <label>artwork Date</label>
-    <br>
     <input 
     type="number" 
-    name="artworkDate"
+    name="artworkDate" 
+    value="<%= artworks.artworkDate%>"
     required
     oninvalid="setCustomValidity('Please insert Artwork Date')"
     oninput="this.setCustomValidity('')"
     >
     <br>
     <br>
-    <input 
-    type="submit" 
-    value="Add Artwork"
-    >
+
+    <input type="submit" value="Edit Artwork">
   </form>
+

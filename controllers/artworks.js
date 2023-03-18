@@ -1,28 +1,29 @@
 const Artwork = require("../models/artwork");
 const Exhibition = require("../models/exhibition");
 
-module.exports = {
-  create,
-  createNew,
-  index,
-  editPage,
-  update,
-  del,
-};
-
 function createNew(req, res) {
   res.render("artworks/create");
 }
 
-function create(req, res) {
-  const artwork = new Artwork(req.body);
+const create = async (req, res) => {
   try {
-    artwork.save();
+    const artwork = new Artwork(req.body);
+    const newArtwork = await artwork.save();
+    console.log(`newArtwork: ${newExhibition}`);
     res.redirect("/artworks");
-  } catch (error) {
-    res.render(error);
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      console.log(`Data Model Errors: ${errors}`);
+      res.send(
+        `Unable to submit form, please refer to error message -> ${errors}`
+      );
+    } else {
+      console.log(err);
+      res.send(`${errors}`);
+    }
   }
-}
+};
 
 function index(req, res) {
   try {
@@ -48,18 +49,26 @@ function editPage(req, res) {
   }
 }
 
-function update(req, res) {
+const update = async (req, res) => {
   const { id } = req.params;
   try {
-    Artwork.findByIdAndUpdate(id, req.body, { new: true })
-      .exec()
-      .then((artworks) => {
-        res.redirect("/");
-      });
-  } catch (error) {
-    res.send(error);
+    const updateArtwork = await Artwork.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.redirect("/artworks");
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      console.log(`Data Model Errors: ${errors}`);
+      res.send(
+        `Unable to submit form, please refer to error message -> ${errors}`
+      );
+    } else {
+      console.log(err);
+      res.send(`${errors}`);
+    }
   }
-}
+};
 
 function del(req, res) {
   const { id } = req.params;
@@ -73,3 +82,12 @@ function del(req, res) {
     res.send(error);
   }
 }
+
+module.exports = {
+  create,
+  createNew,
+  index,
+  editPage,
+  update,
+  del,
+};
