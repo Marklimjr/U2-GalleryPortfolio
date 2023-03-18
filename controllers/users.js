@@ -91,6 +91,14 @@ const isAuth = async (req, res, next) => {
   }
 };
 
+const logoutSession = async (req, res) => {
+  if (req.session) {
+    req.session.destroy();
+    console.log("Session destroyed");
+  }
+  res.redirect("/");
+};
+
 module.exports = {
   loginPage,
   loginSubmit,
@@ -98,4 +106,5 @@ module.exports = {
   createUser,
   isAuth,
   index,
+  logoutSession,
 };

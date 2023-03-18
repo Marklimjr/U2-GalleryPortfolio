@@ -8,4 +8,6 @@ router.post("/login", userCtrl.loginSubmit);
 router.get("/createUser", userCtrl.createUser);
 router.post("/createUser", userCtrl.createUserLoginDetails);
 router.get("/admin", userCtrl.isAuth, userCtrl.index);
+router.post("/logout", userCtrl.logoutSession);
+
 module.exports = router;
