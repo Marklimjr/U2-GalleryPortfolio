@@ -1,5 +1,6 @@
 const Exhibition = require("../models/exhibition");
 const Artwork = require("../models/artwork");
+const opts = { runValidators: true };
 
 module.exports = {
   create,
@@ -20,7 +21,14 @@ function create(req, res) {
   try {
     exhibition.save().then(res.redirect("/exhibitions"));
   } catch (error) {
-    res.render(error);
+    if (error.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((e) => e.message);
+      // console.log(`Data Model Errors: ${errors}`);
+      res.render("exhibitions/error", { message: errors });
+    } else {
+      console.log(error);
+      res.render("exhibitions/error", { message: error });
+    }
   }
 }
 
@@ -30,9 +38,9 @@ function index(req, res) {
       .populate("artworks")
       .exec()
       .then((exhibitions) => {
-        console.log("THIS IS EXHIBITION" + exhibitions);
+        // console.log("THIS IS EXHIBITION" + exhibitions);
         Artwork.find({}).then((artworks) => {
-          console.log("THIS IS ARTWORKS", artworks);
+          // console.log("THIS IS ARTWORKS", artworks);
           res.render("exhibitions/index", { exhibitions, artworks });
         });
       });
