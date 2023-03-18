@@ -2,35 +2,30 @@ const Exhibition = require("../models/exhibition");
 const Artwork = require("../models/artwork");
 const opts = { runValidators: true };
 
-module.exports = {
-  create,
-  createNew,
-  index,
-  editPage,
-  update,
-  del,
-  updateArtwork,
-};
-
 function createNew(req, res) {
   res.render("exhibitions/create");
 }
 
-function create(req, res) {
-  const exhibition = new Exhibition(req.body);
+const create = async (req, res) => {
   try {
-    exhibition.save().then(res.redirect("/exhibitions"));
-  } catch (error) {
-    if (error.name === "ValidationError") {
+    const exhibition = new Exhibition(req.body);
+
+    const newExhibition = await exhibition.save();
+    console.log(`newExhibition: ${newExhibition}`);
+    res.redirect("/exhibitions");
+  } catch (err) {
+    if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((e) => e.message);
-      // console.log(`Data Model Errors: ${errors}`);
-      res.render("exhibitions/error", { message: errors });
+      console.log(`Data Model Errors: ${errors}`);
+      res.send(
+        `Unable to submit form, please refer to error message -> ${errors}`
+      );
     } else {
-      console.log(error);
-      res.render("exhibitions/error", { message: error });
+      console.log(err);
+      res.send(`${errors}`);
     }
   }
-}
+};
 
 function index(req, res) {
   try {
@@ -103,3 +98,13 @@ function updateArtwork(req, res) {
     res.send(error);
   }
 }
+
+module.exports = {
+  create,
+  createNew,
+  index,
+  editPage,
+  update,
+  del,
+  updateArtwork,
+};
