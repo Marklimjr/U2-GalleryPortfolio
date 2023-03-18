@@ -9,12 +9,21 @@
     
 </head>
 
-<h1>Admin Log In</h1>
 
-<form action="/users/login" method="post">
+<h1> Create User </h1>
+
+<form action="/users/createUser" method="post">
     <label>User ID:</label>
-    <input type="text" name="userid"  />
+    <input
+    type="text" 
+    name="userid"
+    required
+    />
     <label>Password:</label>
-    <input type="text"  name="password"  />
-    <button type="submit">Login</button>
+    <input 
+    type="text"  
+    name="password"  
+    required
+    />
+    <button type="submit">Create Admin</button>
   </form>

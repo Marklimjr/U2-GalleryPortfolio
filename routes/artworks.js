@@ -1,13 +1,14 @@
 var express = require("express");
 var router = express.Router();
 const artworkCtrl = require("../controllers/artworks");
+const { isAuth } = require("../controllers/users");
 
 /* GET home page. */
-router.get("/createNew", artworkCtrl.createNew);
-router.post("/createNew", artworkCtrl.create);
-router.get("/", artworkCtrl.index);
-router.get("/:id", artworkCtrl.editPage);
-router.put("/:id", artworkCtrl.update);
-router.delete("/:id", artworkCtrl.del);
+router.get("/createNew", isAuth, artworkCtrl.createNew);
+router.post("/createNew", isAuth, artworkCtrl.create);
+router.get("/", isAuth, artworkCtrl.index);
+router.get("/:id", isAuth, artworkCtrl.editPage);
+router.put("/:id", isAuth, artworkCtrl.update);
+router.delete("/:id", isAuth, artworkCtrl.del);
 
 module.exports = router;

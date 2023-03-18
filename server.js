@@ -3,11 +3,15 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const methodOverride = require("method-override");
-
 require("dotenv").config();
-
 require("./config/database");
+const methodOverride = require("method-override");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.DATABASE_URL,
+  collectionName: "sessions",
+});
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -18,6 +22,16 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 6000000 }, //10 mins logout of inactivity
+    store: sessionStore,
+  })
+);
 
 app.use(methodOverride("_method"));
 app.use(logger("dev"));

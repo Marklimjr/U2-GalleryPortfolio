@@ -15,19 +15,6 @@ const usersSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      validate: {
-        validator: function (password) {
-          return validator.isStrongPassword(password, { minLength: 3 });
-        },
-        message: "Password must be at least 3 characters long",
-      },
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      validate: [validator.isEmail, "Please provide a valid email address"],
-      lowercase: true,
     },
   },
   {
