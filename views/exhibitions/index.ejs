@@ -16,7 +16,7 @@
     <h3><%= e.title%></h3>
     <h4><%= e.synopsis %></h4>
     <% e.artworks.forEach(function(a){ %>
-        <h6><%= a.artworkUrl%></h6>
+        <img src="<%= a.artworkUrl%>" style="width:800px;height:400px;"> </img>
         <h6><%= a.artistName%></h6>
         <h6><%= a.artworkDate%></h6>
 

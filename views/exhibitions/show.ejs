@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>All Exhibitions</title>
+    
+</head>
+<%- include('../partials/show') %>
+
+<body>
+    <h1>Gallery GA</h1>
+
+    <h1><%=exhibitions.title%></h1>
+
+    <h3><%=exhibitions.synopsis%></h3>
+
+    <% artworks.forEach(function(a){ %>
+        <img src="<%= a.artworkUrl%>" style="width:800px;height:400px;"></img>
+        <h6><%= a.artistName%></h6>
+        <h6><%= a.artworkDate%></h6>
+    <% }) %>
+
+
+
+</body>
+</html>

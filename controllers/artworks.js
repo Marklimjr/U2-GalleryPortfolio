@@ -9,12 +9,11 @@ const create = async (req, res) => {
   try {
     const artwork = new Artwork(req.body);
     const newArtwork = await artwork.save();
-    console.log(`newArtwork: ${newExhibition}`);
+    console.log(`newArtwork: ${newArtwork}`);
     res.redirect("/artworks");
   } catch (err) {
     if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((e) => e.message);
-      console.log(`Data Model Errors: ${errors}`);
       res.send(
         `Unable to submit form, please refer to error message -> ${errors}`
       );

@@ -11,7 +11,7 @@
     <h1>All Exhibitions</h1>
     
     <% exhibitions.forEach(function(e){ %>
-      <% const exhibitionsLink = `/${e._id}`%>
+      <% const exhibitionsLink = `/exhibitions/visit/${e._id}`%>
       <a href="<%=exhibitionsLink%>"><%= e.title%></a>
       <h6><%= e.synopsis%></h6>
     <% }); %> 

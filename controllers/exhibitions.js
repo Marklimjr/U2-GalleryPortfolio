@@ -97,8 +97,24 @@ function updateArtwork(req, res) {
       console.log(e);
       e.artworks.push(artworkId);
       e.save();
-      res.redirect("/");
+      res.redirect("/exhibitions");
     });
+  } catch (error) {
+    res.send(error);
+  }
+}
+
+function show(req, res) {
+  const { id } = req.params;
+  try {
+    Exhibition.findById(id)
+      .populate("artworks")
+      .exec()
+      .then((exhibitions) => {
+        Artwork.find({}).then((artworks) => {
+          res.render("exhibitions/show", { exhibitions, artworks });
+        });
+      });
   } catch (error) {
     res.send(error);
   }
@@ -112,4 +128,5 @@ module.exports = {
   update,
   del,
   updateArtwork,
+  show,
 };

@@ -16,12 +16,8 @@ const artworkSchema = new Schema(
     artworkDate: {
       type: Number,
       required: true,
-      validate: {
-        validator: function (v) {
-          return (v.toString().length = 4);
-        },
-        message: "Year created must be 4 digits long",
-      },
+      min: 1000,
+      max: 2023,
     },
   },
   {

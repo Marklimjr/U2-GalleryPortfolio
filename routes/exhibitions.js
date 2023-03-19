@@ -10,4 +10,5 @@ router.get("/:id", isAuth, exhibitionCtrl.editPage);
 router.put("/:id", isAuth, exhibitionCtrl.update);
 router.delete("/:id", isAuth, exhibitionCtrl.del);
 router.put("/artworks/:id", isAuth, exhibitionCtrl.updateArtwork);
+router.get("/visit/:id", exhibitionCtrl.show);
 module.exports = router;
