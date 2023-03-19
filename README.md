@@ -2,7 +2,7 @@
 
 Gallery GA is an online exhibition hosting app that allows users to do mock ups of online exhibitions. The user as visitor is allowed to browse through the exhibitions and the artworks that are located in them, while the authorized admin has full CRUD function that allows them to cread,edit and delete exhibitions and its assigned artworks.
 
-Give the app a try here ->
+Give the app a try here -> https://powerful-jodhpurs-slug.cyclic.app
 
 default admin : sundayAdmin , pw : password
 
